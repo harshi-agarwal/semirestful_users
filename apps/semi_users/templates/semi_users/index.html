@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3>Products</h3>
+    <table>
+      <thead>
+        <th>
+          NAME
+        </th>
+        <th>
+          description
+        </th>
+        <th>
+          price
+        </th>
+        <th>
+          Actions
+        </th>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr>
+          <td>
+            {{product.name}}
+          </td>
+          <td>
+            {{product.description}}
+          </td>
+          <td>
+            {{product.price}}
+          </td>
+          <td>
+            <a href="{% url 'products:show_product' id=product.id %}">show</a>
+            <a href="{% url 'products:edit_product' id=product.id %}">Edit</a>
+            <form  action="{% url 'products:remove' id=product.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit"  value="Remove">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+   <a href="{% url 'products:new_product' %}">Add a new product</a>
+
+      </body>
+</html>

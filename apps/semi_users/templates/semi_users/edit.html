@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3>welcome to edit</h3>
+    <form  action="{% url 'products:edit_product' id=products.id %}" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="name" value={{products.name}}>
+      Description: <textarea name="description" rows="8" cols="40"> {{products.description}}</textarea>
+      Price: <input type="text" name="price"  value={{products.price}}>
+      <input type="submit"  value="edit_product">
+    </form>
+      <a href="{% url 'products:show_product' id=products.id %}">show</a>
+      <a href="{% url 'products:goback' %}">Go_Back</a>
+  </body>
+</html>
